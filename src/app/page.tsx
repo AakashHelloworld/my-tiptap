@@ -9,7 +9,7 @@ import Highlight from '@tiptap/extension-highlight'
 import StarterKit from '@tiptap/starter-kit'
 import { Toggle } from "@/components/ui/toggle"
 import { HexColorPicker } from "react-colorful";
-import { Bold, Italic, Underline, Code, Link , AlignLeft, AlignCenter, AlignRight, List, ListOrdered, Code2, MessageSquareQuote, Minus, Undo2Icon, Redo2Icon, WrapText, Highlighter, Paintbrush} from "lucide-react"
+import { Bold, Italic, Underline,AlignLeft, AlignCenter, AlignRight, List, ListOrdered, Code2, MessageSquareQuote, Minus, Undo2Icon, Redo2Icon, WrapText, Highlighter, Paintbrush} from "lucide-react"
 import TextAlign from '@tiptap/extension-text-align'
 import FontFamily from '@tiptap/extension-font-family'
 import CharacterCount from '@tiptap/extension-character-count'
@@ -296,7 +296,7 @@ const content = `
 </blockquote>
 `
 
-export default () => {
+export default function Home () {
   return (
     <div className="w-full h-min-screen border p-4 rounded  flex justify-center flex-col items-center">
       <div className="w-[90vw] sm:w-[80vw] h-min-screen border rounded p-4 m-4 flex justify-center flex-col items-center">
