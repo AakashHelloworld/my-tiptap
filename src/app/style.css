@@ -1,0 +1,101 @@
+/* Basic editor styles */
+.tiptap {
+  outline: none;
+    :first-child {
+      margin-top: 0;
+    }
+  
+    /* List styles */
+    ul, 
+    ol {
+      padding: 0 1rem;
+      list-style: square;
+      margin: 1.25rem 1rem 1.25rem 0.4rem;
+      
+      li p {
+        margin-top: 0.25em;
+        margin-bottom: 0.25em;
+      }
+    }
+  
+    /* Heading styles */
+    h1, 
+    h2, 
+    h3, 
+    h4, 
+    h5, 
+    h6 {
+      line-height: 1.1;
+      margin-top: 2.5rem;
+      text-wrap: pretty;
+    }
+  
+    h1, 
+    h2 {
+      margin-top: 3.5rem;
+      margin-bottom: 1.5rem;
+    }
+  
+    h1 { 
+      font-size: 2rem;
+      font-weight: 900;
+       
+    }
+  
+    h2 { 
+      font-size: 1.8rem; 
+      font-weight: 700;
+    }
+  
+    h3 { 
+      font-size: 1.5rem; 
+      font-weight: 600;
+    }
+    h4{
+      font-size: 1.25rem;
+      font-weight: 500;
+    }
+
+    h5 { 
+      font-size: 1.1rem; 
+      font-weight: 400;
+    }
+  
+    h6 {  
+      font-size: 1rem;  
+      font-weight: 300;
+    }
+  
+  
+    /* Code and preformatted text styles */
+    code {
+      border-radius: 0.4rem;
+      color: #86ff90;
+      font-size: 0.85rem;
+      padding: 0.25em 0.3em;
+    }
+  
+    pre {
+      background: #193549;
+      border-radius: 0.5rem;
+      color: var(white);
+      font-family: 'JetBrainsMono', monospace;
+      margin: 1.5rem 0;
+      padding: 0.75rem 1rem;
+  
+    }
+  
+    blockquote {
+      border-left: 3px solid black;
+      background-color: rgb(216, 216, 216);
+      margin: 1.5rem 0;
+      padding-left: 1rem;
+    }
+  
+    hr {
+      border: none;
+      border-top: 1px solid black;
+      width: 100%;
+      margin: 2rem 0;
+    }
+  }
