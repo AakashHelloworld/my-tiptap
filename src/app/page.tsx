@@ -9,7 +9,7 @@ import Highlight from '@tiptap/extension-highlight'
 import StarterKit from '@tiptap/starter-kit'
 import { Toggle } from "@/components/ui/toggle"
 import { HexColorPicker } from "react-colorful";
-import { Bold, Italic, Underline,AlignLeft, AlignCenter, AlignRight, List, ListOrdered, Code2, MessageSquareQuote, Minus, Undo2Icon, Redo2Icon, WrapText, Highlighter, Paintbrush} from "lucide-react"
+import { Bold, Italic, Underline,AlignLeft, AlignCenter, AlignRight, List, ListOrdered, Code2, MessageSquareQuote, Minus, Undo2Icon, Redo2Icon, WrapText, Highlighter, Paintbrush, FileText} from "lucide-react"
 import TextAlign from '@tiptap/extension-text-align'
 import FontFamily from '@tiptap/extension-font-family'
 import CharacterCount from '@tiptap/extension-character-count'
@@ -89,7 +89,7 @@ const MenuBar = ({ editorContent }: { editorContent: string }) => {
   return (
     <div className="flex items-center flex-col justify-center w-full">
       <div className="w-full flex justify-end">
-      <Button onClick={downloadPdf} >{loading ? <Loader2 className="w-4 animate-spin" /> : "Download"}</Button>
+      <Button onClick={downloadPdf} >{loading ? <Loader2 className="w-4 animate-spin" /> :<span className="flex items-center gap-2"><FileText className="w-4" />  Download PDF</span>}</Button>
       </div>
       <div className={`w-full flex justify-between`}>
         <div>
