@@ -13,7 +13,8 @@ import { Bold, Italic, Underline,AlignLeft, AlignCenter, AlignRight, List, ListO
 import TextAlign from '@tiptap/extension-text-align'
 import FontFamily from '@tiptap/extension-font-family'
 import CharacterCount from '@tiptap/extension-character-count'
-
+import { Loader2 } from "lucide-react"
+import jsPDF from 'jspdf'
 import {
   Select,
   SelectContent,
@@ -26,10 +27,13 @@ import {
   PopoverContent,
   PopoverTrigger,
 } from "@/components/ui/popover"
+import { Button } from "@/components/ui/button"
+import html2canvas from 'html2canvas'
 
-const MenuBar = () => {
+const MenuBar = ({ editorContent }: { editorContent: string }) => {
   const [onColorOpen, setOnColorOpen] = useState(false);
   const [onHighlightOpen, setOnHighlightOpen] = useState(false);
+  const [loading, setLoading] = useState(false);
   const { editor } = useCurrentEditor()
   // console.log(editor)
   const [color, setColor] = useState("#000000");
@@ -40,8 +44,53 @@ const MenuBar = () => {
     return null
   }
 
+  const downloadPdf = () => {
+    setLoading(true);
+    const doc = new jsPDF();
+    const element = document.getElementsByClassName('tiptap')[0];
+
+    const options = {
+      scale: 2,
+      useCORS: true,
+      scrollY: 0,
+      scrollX: 0,
+      width: element.clientWidth,
+      height: element.clientHeight,
+    };
+
+    html2canvas(element as HTMLDivElement, options).then(canvas => {
+      const imgData = canvas.toDataURL('image/png');
+      const imgProps = doc.getImageProperties(imgData);
+      const pdfWidth = doc.internal.pageSize.getWidth();
+      const pdfHeight = (imgProps.height * pdfWidth) / imgProps.width;
+
+      let offsetY = 0;
+      let remainingHeight = pdfHeight;
+
+      // Iterate through pages
+      while (remainingHeight > 0) {
+        doc.addImage(imgData, 'PNG', 0, offsetY, pdfWidth, pdfHeight);
+        remainingHeight -= pdfHeight;
+
+        if (remainingHeight > 0) {
+          doc.addPage();
+        }
+
+        offsetY -= pdfHeight;
+      }
+
+      doc.save('document.pdf');
+      setLoading(false);
+    });
+    setLoading(false);
+  };;
+
+
   return (
     <div className="flex items-center flex-col justify-center w-full">
+      <div className="w-full flex justify-end">
+      <Button onClick={downloadPdf} >{loading ? <Loader2 className="w-4 animate-spin" /> : "Download"}</Button>
+      </div>
       <div className={`w-full flex justify-between`}>
         <div>
         <Toggle
@@ -283,8 +332,11 @@ const content = `
 <p>
   Isn’t that great? And all of that is editable. But wait, there’s more. Let’s try a code block:
 </p>
-<pre><code class="language-css">body {
+<pre>
+
+<code class="language-css">body {
   display: none;
+  
 }</code></pre>
 <p>
   I know, I know, this is impressive. It’s only the tip of the iceberg though. Give it a try and click a little bit around. Don’t forget to check the other examples too.
@@ -297,12 +349,18 @@ const content = `
 `
 
 export default function Home () {
+  const [html, setHtml] = useState(content)
+
   return (
     <div className="w-full h-min-screen border p-4 rounded  flex justify-center flex-col items-center">
       <div className="w-[90vw] sm:w-[80vw] h-min-screen border rounded p-4 m-4 flex justify-center flex-col items-center">
         <EditorProvider onUpdate={(editor) => {
           console.log(editor.editor.getHTML())
-        }} slotBefore={<MenuBar />} extensions={extensions} content={content}></EditorProvider>
+          setHtml(editor.editor.getHTML())
+          
+        }} slotBefore={<MenuBar editorContent={html} />} extensions={extensions} content={content}>
+        {/* <div id="editor-content" className="p-[3rem] hidden" dangerouslySetInnerHTML={{ __html: html }}></div> */}
+        </EditorProvider>
     </div>
     </div>
   )
