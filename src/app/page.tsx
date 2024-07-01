@@ -92,7 +92,7 @@ const MenuBar = ({ editorContent }: { editorContent: string }) => {
       <Button onClick={downloadPdf} >{loading ? <Loader2 className="w-4 animate-spin" /> :<span className="flex items-center gap-2"><FileText className="w-4" />  Download PDF</span>}</Button>
       </div>
       <div className={`w-full flex justify-between`}>
-        <div>
+        <div className="">
         <Toggle
           onClick={() => editor.chain().focus().undo().run()}
           disabled={
@@ -118,7 +118,7 @@ const MenuBar = ({ editorContent }: { editorContent: string }) => {
           <Redo2Icon className="w-4"  />
         </Toggle>
         </div>
-        <div>
+        <div className="flex gap-2 justify-end">
         <p className="text-sm"><span className="font-bold text-[red]">{editor.storage.characterCount.characters()}</span> characters </p>
         <p className="text-sm"><span className="font-bold text-[red]">{editor.storage.characterCount.words()}</span> words</p>
         </div>
