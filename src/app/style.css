@@ -1,6 +1,16 @@
 /* Basic editor styles */
 .tiptap, #editor-content {
+  width: 100% !important;
+  min-height: 100vh !important;
   padding: 4rem !important;
+
+  div{
+    width: 100% !important;
+    height: 30vh  !important;
+    page-break-after: always;
+
+  }
+
   outline: none;
     :first-child {
       margin-top: 0;
@@ -99,4 +109,7 @@
       width: 100%;
       margin: 2rem 0;
     }
+  }
+  .editorContainer div{
+    width: 100% !important;
   }

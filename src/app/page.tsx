@@ -353,7 +353,7 @@ export default function Home () {
 
   return (
     <div className="w-full h-min-screen border p-4 rounded  flex justify-center flex-col items-center">
-      <div className="w-[90vw] sm:w-[80vw] h-min-screen border rounded p-4 m-4 flex justify-center flex-col items-center">
+      <div className="w-[90vw] sm:w-[80vw] h-min-screen border rounded p-4 m-4 flex justify-center flex-col items-center editorContainer">
         <EditorProvider onUpdate={(editor) => {
           console.log(editor.editor.getHTML())
           setHtml(editor.editor.getHTML())
